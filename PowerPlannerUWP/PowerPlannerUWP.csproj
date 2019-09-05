@@ -113,7 +113,7 @@
     <PRIResource Include="Strings\es\Resources.resw">
       <SubType>Designer</SubType>
     </PRIResource>
-    <PRIResource Include="Strings\en-US\Resources.resw">
+    <PRIResource Include="Strings\en\Resources.resw">
       <SubType>Designer</SubType>
     </PRIResource>
   </ItemGroup>

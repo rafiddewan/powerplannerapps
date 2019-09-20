@@ -37,10 +37,17 @@ namespace PowerPlannerAndroid.Views
             ViewModel.AlertUserUpgradeAccountNeeded = AlertUserUpgradeAccountNeeded;
             ViewModel.PropertyChanged += new WeakEventHandler<PropertyChangedEventArgs>(ViewModel_PropertyChanged).Handler;
 
+            ViewModel.OnReportLoginError += ViewModel_OnReportLoginError;
+
             FindViewById<Button>(Resource.Id.ButtonForgotUsername).Click += delegate { ViewModel.ForgotUsername(); };
             FindViewById<Button>(Resource.Id.ButtonForgotPassword).Click += delegate { ViewModel.ForgotPassword(); };
 
             KeyboardHelper.FocusAndShow(FindViewById<EditText>(Resource.Id.EditTextUsername));
+        }
+
+        private void ViewModel_OnReportLoginError(object sender, string e)
+        {
+            AboutView.EmailDeveloper(Context, ViewModel, e);
         }
 
         private void ViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)

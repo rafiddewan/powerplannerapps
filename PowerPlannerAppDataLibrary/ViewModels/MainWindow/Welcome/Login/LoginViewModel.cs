@@ -194,6 +194,8 @@ namespace PowerPlannerAppDataLibrary.ViewModels.MainWindow.Welcome.Login
 
             catch (Exception ex)
             {
+                OnReportLoginError(this, ex.ToString());
+                return;
                 TelemetryExtension.Current?.TrackException(ex);
                 await new PortableMessageDialog("Error logging in. Your issue has been sent to the developer.").ShowAsync();
             }
@@ -373,6 +375,12 @@ namespace PowerPlannerAppDataLibrary.ViewModels.MainWindow.Welcome.Login
                         {
                             var result = await Sync.SyncAccountAsync(account);
 
+                            if (result != null && result.Error != null)
+                            {
+                                OnReportLoginError(this, "SyncError: " + result.Error);
+                                return;
+                            }
+
                             if (result != null && result.SelectedSemesterId != null && result.SelectedSemesterId.Value != Guid.Empty)
                             {
                                 await account.SetCurrentSemesterAsync(result.SelectedSemesterId.Value, uploadSettings: false);
@@ -381,7 +389,10 @@ namespace PowerPlannerAppDataLibrary.ViewModels.MainWindow.Welcome.Login
 
                         catch (OperationCanceledException) { }
 
-                        catch { }
+                        catch (Exception ex) {
+                            OnReportLoginError(this, ex.ToString());
+                            return;
+                        }
 
                         IsSyncingAccount = false;
 
@@ -392,9 +403,7 @@ namespace PowerPlannerAppDataLibrary.ViewModels.MainWindow.Welcome.Login
 
             catch (Exception ex)
             {
-                Debug.WriteLine("Failed logging into online account: " + ex.ToString());
-
-                ShowMessage(PowerPlannerResources.GetString("LoginPage_String_ExplanationOfflineAndNoLocalAccountFound"), PowerPlannerResources.GetString("LoginPage_String_NoAccountFoundHeader"));
+                OnReportLoginError(this, ex.ToString());
             }
 
             finally
@@ -402,6 +411,9 @@ namespace PowerPlannerAppDataLibrary.ViewModels.MainWindow.Welcome.Login
                 IsLoggingInOnline = false;
             }
         }
+
+        public event EventHandler<string> OnReportLoginError;
+
         public System.Threading.Tasks.Task<AccountDataItem> CreateAccount(string username, string localToken, string token, long accountId, int deviceId)
         {
             return CreateAccountHelper.CreateAccountLocally(username, localToken, token, accountId, deviceId);

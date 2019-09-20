@@ -37,7 +37,7 @@ namespace PowerPlannerAndroid.Views
             EmailDeveloper(Context, base.ViewModel);
         }
 
-        public static void EmailDeveloper(Context context, BaseViewModel current)
+        public static void EmailDeveloper(Context context, BaseViewModel current, string message = null)
         {
             string accountInfo = "";
             var mainScreen = current is MainScreenViewModel ? current as MainScreenViewModel : current.FindAncestor<MainScreenViewModel>();
@@ -54,6 +54,11 @@ namespace PowerPlannerAndroid.Views
 
             // Note that we're not including body text, since when sending from Outlook, it trims the leading newlines leaving no space for user to write.
             //emailIntent.PutExtra(Intent.ExtraText, "\n\nPower Planner Droid - Version " + _version + accountInfo);
+
+            if (message != null)
+            {
+                emailIntent.PutExtra(Intent.ExtraText, message);
+            }
 
             try
             {

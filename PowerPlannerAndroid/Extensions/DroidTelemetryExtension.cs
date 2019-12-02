@@ -52,6 +52,8 @@ namespace PowerPlannerAndroid.Extensions
 
         public override void TrackException(Exception ex, [CallerMemberName] string exceptionName = null)
         {
+            Android.Util.Log.Error("PPException", ex.ToString());
+
             try
             {
                 Crashes.TrackError(ex, exceptionName == null ? null : new Dictionary<string, string>()

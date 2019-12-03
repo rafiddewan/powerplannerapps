@@ -25,6 +25,8 @@ namespace PowerPlannerAndroid.Extensions
 
         public override void TrackEvent(string eventName, IDictionary<string, string> properties = null)
         {
+            Android.Util.Log.Info("PPEvent", eventName);
+
             try
             {
                 if (properties == null)
@@ -52,7 +54,7 @@ namespace PowerPlannerAndroid.Extensions
 
         public override void TrackException(Exception ex, [CallerMemberName] string exceptionName = null)
         {
-            Android.Util.Log.Error("PPException", ex.ToString());
+            Android.Util.Log.Info("PPException", ex.ToString());
 
             try
             {
@@ -66,6 +68,8 @@ namespace PowerPlannerAndroid.Extensions
 
         public override void TrackPageView(string pageName, DateTime timeVisited, TimeSpan duration)
         {
+            Android.Util.Log.Info("PPPageView", pageName);
+
             try
             {
                 // Have to track username since it doesn't automatically get logged for events/page views

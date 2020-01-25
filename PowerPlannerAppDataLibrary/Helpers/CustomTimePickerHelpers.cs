@@ -19,9 +19,11 @@ namespace PowerPlannerAppDataLibrary.Helpers
         /// </summary>
         /// <param name="perEachItem">This will evaluate per each item, and the result this gives back will be append to the end of each item, the single parameter is the time we're currently at.</param>
         /// <param name="extraItem">If we need to, we will add an extraItem in the correct place, provided it isn't already in the list.</param>
-        public static ObservableCollection<string> GenerateTimes(DateTime startTime, DateTime extraItem, int minutes, Func<DateTime, string> perEachItem = null)
+        public static List<string> GenerateTimes(DateTime startTime, DateTime extraItem, int minutes, Func<DateTime, string> perEachItem = null)
         {
-            var ret = new ObservableCollection<string>();
+            DateTime start = DateTime.Now;
+            minutes = 1;
+            var ret = new List<string>();
             var currentTime = startTime;
             var addedExtraItem = false;
 
@@ -41,9 +43,13 @@ namespace PowerPlannerAppDataLibrary.Helpers
                 }
 
                 var perEachItemText = perEachItem == null ? string.Empty : perEachItem(currentTime);
+                DateTime subStart = DateTime.Now;
                 ret.Add(DateTimeFormatterExtension.Current.FormatAsShortTime(currentTime) + perEachItemText);
+                var subDur = DateTime.Now - subStart;
                 currentTime = currentTime.AddMinutes(minutes);
             }
+
+            var duration = DateTime.Now - start;
 
             return ret;
         }
@@ -52,30 +58,41 @@ namespace PowerPlannerAppDataLibrary.Helpers
         /// Similar to <see cref="GenerateTimes(DateTime, int, Func{string})"/>, except with <see cref="GenerateTimeOffsetText(DateTime)"/> appended to the ends of each item.
         /// </summary>
         /// <returns></returns>
-        public static ObservableCollection<string> GenerateTimesWithOffset(DateTime startTime, DateTime extraItem, int minutes) => GenerateTimes(startTime, extraItem, minutes, t => GenerateTimeOffsetText(t.Subtract(startTime)));
+        public static List<string> GenerateTimesWithOffset(DateTime startTime, DateTime extraItem, int minutes) => GenerateTimes(startTime, extraItem, minutes, t => GenerateTimeOffsetText(t.Subtract(startTime)));
 
         /// <summary>
         /// Generates time offset text such as "+30m" or "+1h40m".
         /// </summary>
         public static string GenerateTimeOffsetText(TimeSpan time)
         {
+            string res = GeneratePlainTimeOffsetText(time);
+
+            if (res.Length > 0)
+            {
+                res = $" ({res})";
+            }
+
+            return res;
+        }
+
+        public static string GeneratePlainTimeOffsetText(TimeSpan offset)
+        {
             // Don't do anything if they're both 0.
-            if (time.Hours == 0 && time.Minutes == 0)
+            if (offset.Hours == 0 && offset.Minutes == 0)
                 return "";
 
-            string res = " (+";
+            string res = "+";
 
-            if (time.Hours > 0)
+            if (offset.Hours > 0)
             {
-                res += ForceTwoDigitNumber(time.Hours);
+                res += ForceTwoDigitNumber(offset.Hours);
                 res += "h";
             }
-            if (time.Minutes > 0)
+            if (offset.Minutes > 0)
             {
-                res += ForceTwoDigitNumber(time.Minutes);
+                res += ForceTwoDigitNumber(offset.Minutes);
                 res += "m";
             }
-            res += ")";
 
             return res;
         }

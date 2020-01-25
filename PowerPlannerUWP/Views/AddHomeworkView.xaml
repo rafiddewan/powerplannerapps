@@ -98,9 +98,8 @@
                                 x:Name="TimePickerStartTime"
                                 Margin="6"
                                 HorizontalAlignment="Stretch"
-                                IsEnd="False"
                                 Header="Due time"
-                                MainTime="{Binding StartTime, Mode=TwoWay}"
+                                SelectedTime="{Binding StartTime, Mode=TwoWay}"
                                 Visibility="{Binding IsStartTimePickerVisible, Converter={StaticResource BoolToVisibilityConverter}}"/>
 
                         </controls:AbTestControl.EnabledContent>
@@ -115,7 +114,7 @@
                         </controls:AbTestControl.DisabledContent>
                     </controls:AbTestControl>
 
-                    <controls:AbTestControl TestName="NewTimePicker">
+                    <!--<controls:AbTestControl TestName="NewTimePicker">
                         <controls:AbTestControl.EnabledContent>
                             <controls:TimePickerControl
                                 x:Name="TimePickerEndTime"
@@ -127,15 +126,15 @@
                                 MainTime="{Binding EndTime, Mode=TwoWay}"
                                 Visibility="{Binding IsEndTimePickerVisible, Converter={StaticResource BoolToVisibilityConverter}}"/>
                         </controls:AbTestControl.EnabledContent>
-                        <controls:AbTestControl.DisabledContent>
+                        <controls:AbTestControl.DisabledContent>-->
                             <TimePicker
                                 Header="End time"
                                 Margin="6"
                                 HorizontalAlignment="Stretch"
                                 Visibility="{Binding IsEndTimePickerVisible, Converter={StaticResource BoolToVisibilityConverter}}"
                                 Time="{Binding EndTime, Mode=TwoWay}"/>
-                        </controls:AbTestControl.DisabledContent>
-                    </controls:AbTestControl>
+                        <!--</controls:AbTestControl.DisabledContent>
+                    </controls:AbTestControl>-->
 
                 </interfaces:MyAdaptiveGridPanel>
 

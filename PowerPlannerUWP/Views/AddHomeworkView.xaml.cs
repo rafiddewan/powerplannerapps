@@ -89,8 +89,6 @@ namespace PowerPlannerUWP.Views
 
         public override void OnViewModelSetOverride()
         {
-            TimePickerStartTime.Header = GetStartTimeText();
-            TimePickerEndTime.Header = LocalizedResources.GetString("String_EndTime");
             ComboBoxTimeOptions.Header = LocalizedResources.GetString("String_Time");
 
             ViewModel.PropertyChanged += new WeakEventHandler<System.ComponentModel.PropertyChangedEventArgs>(ViewModel_PropertyChanged).Handler;

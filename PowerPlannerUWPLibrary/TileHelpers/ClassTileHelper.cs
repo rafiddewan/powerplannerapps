@@ -1,4 +1,5 @@
-﻿using PowerPlannerAppDataLibrary.DataLayer;
+﻿using InterfacesUWP.Helpers;
+using PowerPlannerAppDataLibrary.DataLayer;
 using PowerPlannerAppDataLibrary.DataLayer.DataItems;
 using PowerPlannerAppDataLibrary.DataLayer.DataItems.BaseItems;
 using PowerPlannerAppDataLibrary.DataLayer.TileSettings;
@@ -14,7 +15,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ToolsUniversal;
 using Windows.Data.Xml.Dom;
 using Windows.UI;
 using Windows.UI.Notifications;

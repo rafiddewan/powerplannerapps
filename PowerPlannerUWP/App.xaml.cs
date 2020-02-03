@@ -20,7 +20,6 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using ToolsPortable;
-using ToolsUniversal;
 using UpgradeFromSilverlight;
 using UpgradeFromWin8;
 using Windows.ApplicationModel;
@@ -86,6 +85,7 @@ using PowerPlannerAppDataLibrary.ViewModels.MainWindow.Settings.Grades;
 using PowerPlannerUWP.Views.SettingsViews.Grades;
 using PowerPlannerAppDataLibrary.ViewModels.MainWindow.Promos;
 using PowerPlannerUWP.Views.WelcomeViews;
+using PowerPlannerUWP.Helpers;
 
 namespace PowerPlannerUWP
 {

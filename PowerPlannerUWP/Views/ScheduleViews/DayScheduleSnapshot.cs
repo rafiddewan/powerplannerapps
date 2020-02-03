@@ -1,6 +1,7 @@
 ﻿using InterfacesUWP;
 using InterfacesUWP.Controls;
 using InterfacesUWP.Converters;
+using InterfacesUWP.Helpers;
 using PowerPlannerAppDataLibrary.App;
 using PowerPlannerAppDataLibrary.Extensions;
 using PowerPlannerAppDataLibrary.ViewItems;
@@ -18,7 +19,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ToolsPortable;
-using ToolsUniversal;
 using Windows.Globalization.DateTimeFormatting;
 using Windows.UI;
 using Windows.UI.Text;

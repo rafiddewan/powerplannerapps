@@ -9,7 +9,6 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Text;
-using ToolsUniversal;
 using ToolsPortable;
 using Windows.UI;
 
@@ -24,6 +23,7 @@ using PowerPlannerAppDataLibrary.PPEventArgs;
 using Windows.UI.Xaml.Shapes;
 using System.Collections.Specialized;
 using PowerPlannerAppDataLibrary.Extensions;
+using InterfacesUWP.Helpers;
 
 namespace PowerPlannerUWP.Views.CalendarViews
 {

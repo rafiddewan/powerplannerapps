@@ -1,0 +1,8 @@
+﻿<interfaces:NativeUnoApplication
+    x:Class="PowerPlannerUno.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:interfaces="using:PowerPlannerUno.Shared.Interfaces"
+    xmlns:local="using:PowerPlannerUno">
+
+</interfaces:NativeUnoApplication>
